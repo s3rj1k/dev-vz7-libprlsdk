@@ -1,0 +1,4 @@
+# ignore changelog bug, not debian upstream package
+libprlsdk7: new-package-should-close-itp-bug
+# ignoring, make package names uniform
+libprlsdk7: package-name-doesnt-match-sonames libprl-sdk7

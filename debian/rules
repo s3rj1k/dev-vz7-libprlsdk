@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	# libprlsdk7
+	mkdir -p debian/libprlsdk7/usr/lib/${DEB_HOST_MULTIARCH}
+	find z-Build/Debug64/ -type l -exec mv {} debian/libprlsdk7/usr/lib/${DEB_HOST_MULTIARCH} \;
+	install -m 755 -p z-Build/Debug64/libprl_sdk.so.7.0.* debian/libprlsdk7/usr/lib/${DEB_HOST_MULTIARCH}
